@@ -32,3 +32,24 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'This file must not be called directly.' );
 }
+
+// Check for minimum PHP Version.
+if ( ! function_exists( 'is_php_version_compatible' ) || ! is_php_version_compatible( '5.3.0' ) ) {
+
+	add_action(
+		'admin_notices',
+		function() {
+
+			$class   = 'notice notice-error';
+			$message = __( 'Your site does not meet the minimum PHP version to run this plugin.', 'ocwp' );
+			echo sprintf(
+				'<div class="%s"><p>%s</p></div>',
+				esc_attr( $class ),
+				esc_html( $message )
+			);
+
+		}
+	);
+	return false;
+
+}
