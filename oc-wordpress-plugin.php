@@ -79,3 +79,6 @@ define( 'OCWP_URL', plugin_dir_url( __FILE__ ) );
 define( 'OCWP_PATH', plugin_dir_path( __FILE__ ) );
 define( 'OCWP_LANG', OCWP_PATH . 'lang/' );
 define( 'OCWP_INC', OCWP_PATH . 'includes/' );
+
+// Internationalization.
+require_once OCWP_INC . 'class-internationalization.php';
