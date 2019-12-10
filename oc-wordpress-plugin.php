@@ -53,3 +53,24 @@ if ( ! function_exists( 'is_php_version_compatible' ) || ! is_php_version_compat
 	return false;
 
 }
+
+// Check for minimum WordPress Version.
+if (  ! function_exists( 'is_wp_version_compatible' ) ||  ! is_wp_version_compatible( '5.2.0' ) ) {
+
+	add_action(
+		'admin_notices',
+		function() {
+
+			$class   = 'notice notice-error';
+			$message = __( 'Your site does not meet the minimum WordPress version to run this plugin.', 'ocwp' );
+			echo sprintf(
+				'<div class="%s"><p>%s</p></div>',
+				esc_attr( $class ),
+				esc_html( $message )
+			);
+
+		}
+	);
+	return false;
+
+}
