@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: OC WordPress Plugin\n"
-"POT-Creation-Date: 2019-12-10 09:48-0800\n"
-"PO-Revision-Date: 2019-12-10 09:48-0800\n"
+"POT-Creation-Date: 2020-03-09 23:34-0700\n"
+"PO-Revision-Date: 2020-03-09 23:34-0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,38 @@ msgstr ""
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: includes/class-admin-pages.php:35 includes/class-admin-pages.php:36
+msgid "OCWP Plugin"
+msgstr ""
+
+#: includes/class-admin-pages.php:67
+msgid "Settings Saved"
+msgstr ""
+
+#: includes/class-admin-pages.php:90
+msgid "Save Settings"
+msgstr ""
+
+#: includes/class-admin-pages.php:107
+msgid "Meetup Information"
+msgstr ""
+
+#: includes/class-admin-pages.php:115
+msgid "Meetup Name"
+msgstr ""
+
+#: includes/class-admin-pages.php:129
+msgid "Meetup URL"
+msgstr ""
+
+#: includes/class-admin-pages.php:169
+msgid "Enter the name of your meetup."
+msgstr ""
+
+#: includes/class-admin-pages.php:193
+msgid "Enter the url of your meetup."
+msgstr ""
 
 #: oc-wordpress-plugin.php:44
 msgid "Your site does not meet the minimum PHP version to run this plugin."
