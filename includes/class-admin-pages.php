@@ -62,16 +62,16 @@ class Admin_Pages {
 
 			// Add settings saved message with the class of "updated".
 			add_settings_error(
-				'wporg_messages',
-				'wporg_message',
-				__( 'Settings Saved', 'wporg' ),
+				'ocwp_messages',
+				'ocwp_message',
+				__( 'Settings Saved', 'ocwp' ),
 				'updated'
 			);
 
 		}
 
 		// Show error/update messages.
-		settings_errors( 'wporg_messages' );
+		settings_errors( 'ocwp_messages' );
 		?>
 		<div class="wrap">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
@@ -79,7 +79,7 @@ class Admin_Pages {
 			<form action="options.php" method="post">
 			<?php
 
-				// Output security fields for the registered setting "wporg".
+				// Output security fields for the registered setting "ocwp_meetup".
 				settings_fields( 'ocwp_group' );
 
 				// Output setting sections and their fields.
