@@ -1,6 +1,8 @@
 <?php
 /**
  * Reusable i18n class.
+ *
+ * @package ocwp
  */
 
 namespace ocwp;
