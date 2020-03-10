@@ -82,3 +82,6 @@ define( 'OCWP_INC', OCWP_PATH . 'includes/' );
 
 // Internationalization.
 require_once OCWP_INC . 'class-internationalization.php';
+
+// Admin Pages.
+require_once OCWP_INC . 'class-admin-pages.php';
