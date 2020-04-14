@@ -85,3 +85,7 @@ require_once OCWP_INC . 'class-internationalization.php';
 
 // Admin Pages.
 require_once OCWP_INC . 'class-admin-pages.php';
+
+// Embeds.
+require_once OCWP_INC . 'class-frontend-options.php';
+require_once OCWP_INC . 'class-setting-embeds.php';
