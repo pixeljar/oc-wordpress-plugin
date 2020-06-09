@@ -224,6 +224,11 @@ class Custom_Post_Type {
 		return $content;
 	}
 
+	/**
+	 * Adds a metabox to the OCWP Member post type.
+	 *
+	 * @return void
+	 */
 	public static function add_meta_boxes() {
 
 		add_meta_box(
@@ -237,6 +242,12 @@ class Custom_Post_Type {
 
 	}
 
+	/**
+	 * Outputs the content of the metabox.
+	 *
+	 * @param WP_Post $post The post object.
+	 * @return void
+	 */
 	public static function member_details_metabox( $post ) {
 
 		wp_nonce_field(
@@ -259,6 +270,12 @@ class Custom_Post_Type {
 
 	}
 
+	/**
+	 * Saves the meta to the post.
+	 *
+	 * @param integer $post_id The post ID.
+	 * @return void
+	 */
 	public static function save_post( $post_id ) {
 
 		// Autosaves kill post meta.
