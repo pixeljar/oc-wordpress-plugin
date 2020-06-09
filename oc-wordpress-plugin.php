@@ -89,3 +89,10 @@ require_once OCWP_INC . 'class-admin-pages.php';
 // Embeds.
 require_once OCWP_INC . 'class-frontend-options.php';
 require_once OCWP_INC . 'class-setting-embeds.php';
+
+// Custom Post Type.
+require_once OCWP_INC . 'class-custom-post-type.php';
+
+// Register an activation hook to set up post type permalinks.
+register_activation_hook( __FILE__, '\ocwp\Custom_Post_Type::activation' );
+register_deactivation_hook( __FILE__, '\ocwp\Custom_Post_Type::deactivation' );
