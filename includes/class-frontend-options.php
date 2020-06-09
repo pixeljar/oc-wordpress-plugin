@@ -63,8 +63,6 @@ class Frontend_Options {
 			// Save the option to the database.
 			update_option( 'ocwp_meetup', $ocwp_meetup );
 
-		} else {
-			wp_die( 'Do not do that.' );
 		}
 
 	}
