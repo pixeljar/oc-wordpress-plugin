@@ -75,6 +75,7 @@ if (  ! function_exists( 'is_wp_version_compatible' ) ||  ! is_wp_version_compat
 
 }
 
+define( 'OCWP_MAIN_FILE', __FILE__ );
 define( 'OCWP_URL', plugin_dir_url( __FILE__ ) );
 define( 'OCWP_PATH', plugin_dir_path( __FILE__ ) );
 define( 'OCWP_LANG', OCWP_PATH . 'lang/' );
@@ -92,6 +93,9 @@ require_once OCWP_INC . 'class-setting-embeds.php';
 
 // Custom Post Type.
 require_once OCWP_INC . 'class-custom-post-type.php';
+
+// WordPress Cron.
+require_once OCWP_INC . 'class-cron.php';
 
 // Register an activation hook to set up post type permalinks.
 register_activation_hook( __FILE__, '\ocwp\Custom_Post_Type::activation' );
