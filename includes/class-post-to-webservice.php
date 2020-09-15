@@ -34,8 +34,8 @@ class Post_To_Webservice {
 	 */
 	public static function post_to_slack() {
 
-
-		$slack_webhook = 'https://hooks.slack.com/services/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';
+		// Change to actual slack webhook.
+		$slack_webhook = 'https://post-to-slack.dev/url';
 
 		$response = wp_remote_post(
 			$slack_webhook,
