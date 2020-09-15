@@ -91,14 +91,14 @@ class Pull_From_Webservice {
 				$post_id = wp_insert_post(
 					[
 						'post_title'   => wp_strip_all_tags( $title ),
-						'post_author'  => $author_id,
-						'post_date'    => $published,
-						'post_content' => $excerpt,
+						'post_author'  => 1,
+						'post_date'    => sanitize_text_field( $published ),
+						'post_content' => wp_kses_post( $excerpt ),
 						'post_status'  => 'draft',
-						'post_type'    => 'iielaw-mention',
+						'post_type'    => 'post',
 						'meta_input'   => [
-							'google-alert-id' => $id,
-							'original_url'    => $link,
+							'google-alert-id' => sanitize_text_field( $id ),
+							'original_url'    => sanitize_text_field( $link ),
 						],
 					]
 				);
