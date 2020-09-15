@@ -1,6 +1,8 @@
 <?php
 /**
  * Sample of posting to a webhook.
+ *
+ * @package ocwp
  */
 
 namespace ocwp;
