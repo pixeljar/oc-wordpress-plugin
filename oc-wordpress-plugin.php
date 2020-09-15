@@ -97,6 +97,9 @@ require_once OCWP_INC . 'class-custom-post-type.php';
 // WordPress Cron.
 require_once OCWP_INC . 'class-cron.php';
 
+// Post to Webservice.
+require_once OCWP_INC . 'class-post-to-webservice.php';
+
 // Register an activation hook to set up post type permalinks.
 register_activation_hook( __FILE__, '\ocwp\Custom_Post_Type::activation' );
 register_deactivation_hook( __FILE__, '\ocwp\Custom_Post_Type::deactivation' );
