@@ -34,7 +34,8 @@ class Pull_From_Webservice {
 	 */
 	public static function pull_from_rss() {
 
-		$rss_feed = 'https://www.google.com/alerts/feeds/03330858117083132927/5498032781732369029';
+		// Google alert feed for "WordPress".
+		$rss_feed = 'https://www.google.com/alerts/feeds/03330858117083132927/14637194953648254169';
 		$response = wp_remote_get( $rss_feed );
 
 		if ( is_wp_error( $response ) ) {
