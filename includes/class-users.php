@@ -170,8 +170,6 @@ class Users {
 			)
 		) {
 
-			global $current_user;
-
 			$updated_nickname = sanitize_text_field(
 				wp_unslash(
 					$_POST['ocwp_nickname']
@@ -190,6 +188,7 @@ class Users {
 			);
 
 			// Update the global current user object to see your changes on the same request.
+			global $current_user;
 			$current_user->display_name = $updated_nickname;
 
 		}
