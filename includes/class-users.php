@@ -130,6 +130,16 @@ class Users {
 	 */
 	public static function edit_nickname_form( $atts = [], $content = '' ) {
 
+		if ( ! is_user_logged_in() ) {
+
+			return wp_login_form(
+				[
+					'echo' => false,
+				]
+			);
+
+		}
+
 		ob_start();
 		?>
 		<form method="post">
