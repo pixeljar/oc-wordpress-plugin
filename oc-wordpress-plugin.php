@@ -103,6 +103,13 @@ require_once OCWP_INC . 'class-post-to-webservice.php';
 // Pull from Webservice.
 require_once OCWP_INC . 'class-pull-from-webservice.php';
 
-// Register an activation hook to set up post type permalinks.
+// User Roles, Contact Methods, and Custom Meta.
+require_once OCWP_INC . 'class-users.php';
+
+// Register an activation/deactivation hook to set up post type permalinks.
 register_activation_hook( __FILE__, '\ocwp\Custom_Post_Type::activation' );
 register_deactivation_hook( __FILE__, '\ocwp\Custom_Post_Type::deactivation' );
+
+// Register an activation/deactivation hook to set up custom user role.
+register_activation_hook( __FILE__, '\ocwp\Users::activation' );
+register_deactivation_hook( __FILE__, '\ocwp\Users::deactivation' );
