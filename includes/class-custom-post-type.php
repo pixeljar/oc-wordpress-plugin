@@ -268,6 +268,17 @@ class Custom_Post_Type {
 			)
 		);
 
+		printf(
+			'<label>
+				<span>%s</span>
+				<input type="text" name="email" value="%s"/>
+			</label>',
+			esc_html__( 'Email Address', 'ocwp' ),
+			esc_attr(
+				get_post_meta( $post->ID, 'email', true )
+			)
+		);
+
 	}
 
 	/**
@@ -303,6 +314,15 @@ class Custom_Post_Type {
 
 			$blog_link = esc_url_raw( wp_unslash( $_POST['blog_link'] ) );
 			update_post_meta( $post_id, 'blog_link', $blog_link );
+
+		}
+
+		if (
+			isset( $_POST['email'] )
+		) {
+
+			$email = sanitize_email( wp_unslash( $_POST['email'] ) );
+			update_post_meta( $post_id, 'email', $email );
 
 		}
 
