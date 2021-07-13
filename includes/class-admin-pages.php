@@ -22,6 +22,10 @@ class Admin_Pages {
 		add_action( 'admin_menu', [ __CLASS__, 'admin_menu' ] );
 		add_action( 'admin_init', [ __CLASS__, 'settings_init' ] );
 
+		add_action( 'wp_ajax_ocwp_save_options', [ __CLASS__, 'ajax_save_options' ] );
+
+		add_action( 'admin_enqueue_scripts', [ __CLASS__, 'enqueue_scripts' ] );
+
 	}
 
 	/**
@@ -38,6 +42,30 @@ class Admin_Pages {
 			'ocwp',
 			[ __CLASS__, 'render_page' ],
 			'dashicons-buddicons-community',
+		);
+
+	}
+
+	public static function enqueue_scripts() {
+
+		wp_enqueue_script(
+			'ocwp-admin-ajax',
+			OCWP_URL . 'assets/js/admin-ajax.js',
+			[
+				'jquery',
+			],
+			time(),
+			true
+		);
+
+		wp_localize_script(
+			'ocwp-admin-ajax',
+			'OCWP',
+			[
+				'ajaxurl'    => admin_url( 'admin-ajax.php' ),
+				'ocwp_nonce' => wp_create_nonce( 'ocwp_ajax_save_option' ),
+				'returnurl'  => admin_url( 'admin.php?page=ocwp&settings-updated=true' ),
+			]
 		);
 
 	}
@@ -76,7 +104,7 @@ class Admin_Pages {
 		<div class="wrap">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
-			<form action="options.php" method="post">
+			<form action="options.php" method="post" id="ocwp-options-form">
 			<?php
 
 				// Output security fields for the registered setting "ocwp_meetup".
@@ -117,8 +145,8 @@ class Admin_Pages {
 			'ocwp_page',
 			'ocwp_meetup_section',
 			[
-				'label_for'         => 'name',
-				'class'             => 'ocwp_meetup_name',
+				'label_for'        => 'name',
+				'class'            => 'ocwp_meetup_name',
 				'owcp_custom_data' => 'custom',
 			]
 		);
@@ -131,8 +159,8 @@ class Admin_Pages {
 			'ocwp_page',
 			'ocwp_meetup_section',
 			[
-				'label_for'         => 'url',
-				'class'             => 'ocwp_meetup_url',
+				'label_for' => 'url',
+				'class'     => 'ocwp_meetup_url',
 			]
 		);
 
@@ -193,6 +221,34 @@ class Admin_Pages {
 			<?php esc_html_e( 'Enter the url of your meetup.', 'ocwp' ); ?>
 		</p>
 		<?php
+
+	}
+
+	public static function ajax_save_options() {
+
+		if (
+			isset( $_POST['ocwp_nonce'] ) &&
+			wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ocwp_nonce'] ) ), 'ocwp_ajax_save_option' )
+		) {
+
+			$is_sent = wp_mail(
+				get_bloginfo( 'admin_email' ),
+				__( 'A setting was updated', 'ocwp' ),
+				sprintf(
+					"%s,\n\nName: %s\n\nURL: %s",
+					__( 'This is what was submitted.', 'ocwp' ),
+					sanitize_text_field( wp_unslash( $_POST['meetup_name'] ) ),
+					sanitize_text_field( wp_unslash( $_POST['meetup_url'] ) )
+				)
+			);
+
+			if ( $is_sent ) {
+				wp_send_json_success( [ 'message' => __( 'The message was sent' ) ] );
+			} else {
+				wp_send_json_success( [ 'message' => __( 'The message was NOT sent' ) ] );
+			}
+
+		}
 
 	}
 
