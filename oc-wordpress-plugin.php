@@ -75,6 +75,7 @@ if (  ! function_exists( 'is_wp_version_compatible' ) ||  ! is_wp_version_compat
 
 }
 
+define( 'OCWP_VERSION', '1.0' );
 define( 'OCWP_MAIN_FILE', __FILE__ );
 define( 'OCWP_URL', plugin_dir_url( __FILE__ ) );
 define( 'OCWP_PATH', plugin_dir_path( __FILE__ ) );
