@@ -22,9 +22,11 @@ class Admin_Pages {
 		add_action( 'admin_menu', [ __CLASS__, 'admin_menu' ] );
 		add_action( 'admin_init', [ __CLASS__, 'settings_init' ] );
 
-		add_action( 'wp_ajax_ocwp_save_options', [ __CLASS__, 'ajax_save_options' ] );
-
 		add_action( 'admin_enqueue_scripts', [ __CLASS__, 'enqueue_scripts' ] );
+
+		add_action( 'wp_ajax_ocwp_save_options', [ __CLASS__, 'ajax_save_options' ] );
+		add_action( 'wp_ajax_nopriv_ocwp_save_options', [ __CLASS__, 'ajax_save_options' ] );
+
 
 	}
 
@@ -54,7 +56,7 @@ class Admin_Pages {
 			[
 				'jquery',
 			],
-			time(),
+			OCWP_VERSION,
 			true
 		);
 
@@ -228,7 +230,8 @@ class Admin_Pages {
 
 		if (
 			isset( $_POST['ocwp_nonce'] ) &&
-			wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ocwp_nonce'] ) ), 'ocwp_ajax_save_option' )
+			wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ocwp_nonce'] ) ), 'ocwp_ajax_save_option' ) &&
+			current_user_can( 'manage_options' )
 		) {
 
 			$is_sent = wp_mail(
@@ -238,6 +241,38 @@ class Admin_Pages {
 					"%s,\n\nName: %s\n\nURL: %s",
 					__( 'This is what was submitted.', 'ocwp' ),
 					sanitize_text_field( wp_unslash( $_POST['meetup_name'] ) ),
+					sanitize_text_field( wp_unslash( $_POST['meetup_url'] ) )
+				)
+			);
+
+			update_option(
+				'ocwp_meetup',
+				[
+					'name' => sanitize_text_field( wp_unslash( $_POST['meetup_name'] ) ),
+					'url'  => sanitize_text_field( wp_unslash( $_POST['meetup_url'] ) ),
+				]
+			);
+
+			global $wpdb;
+			$wpdb->query(
+				$wpdb->prepare(
+					"
+					INSERT INTO {$wpdb->prefix}options SET
+					option_name = 'ocwp_meetup_name',
+					option_value = %s,
+					autoload = 'no'
+					",
+					sanitize_text_field( wp_unslash( $_POST['meetup_name'] ) )
+				)
+			);
+			$wpdb->query(
+				$wpdb->prepare(
+					"
+					INSERT INTO {$wpdb->prefix}options SET
+					option_name = 'ocwp_meetup_url',
+					option_value = %s,
+					autoload = 'no'
+					",
 					sanitize_text_field( wp_unslash( $_POST['meetup_url'] ) )
 				)
 			);
