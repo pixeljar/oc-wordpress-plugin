@@ -12,7 +12,7 @@ jQuery( document ).ready( function( $ ) {
 				'action' : 'ocwp_save_options',
 				'ocwp_nonce' : window.OCWP.ocwp_nonce,
 				'meetup_name' : $('#ocwp-options-form input#name').val(),
-				'meetup_url' : $('#ocwp-options-form input#url').val(),
+				'meetup_url' : $('#ocwp-options-form input#url').val()
 			},
 			function( data ) {
 
