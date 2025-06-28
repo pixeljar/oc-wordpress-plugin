@@ -125,16 +125,16 @@ class Cron {
 	 */
 	public static function delete_revisions() {
 
-		global $wpdb;
+		// global $wpdb;
 
-		$sql = "DELETE a,b,c
-			FROM $wpdb->posts array
-			LEFT JOIN $wpdb->term_relationships b ON (a.ID = b.object_id)
-			LEFT JOIN $wpdb->postmeta c ON (a.ID = c.post_id)
-			WHERE a.post_type = 'revision'
-			AND DATEDIFF( now(), a.post_modified )> 7";
+		// $sql = "DELETE a,b,c
+		// 	FROM $wpdb->posts array
+		// 	LEFT JOIN $wpdb->term_relationships b ON (a.ID = b.object_id)
+		// 	LEFT JOIN $wpdb->postmeta c ON (a.ID = c.post_id)
+		// 	WHERE a.post_type = 'revision'
+		// 	AND DATEDIFF( now(), a.post_modified )> 7";
 
-		$wpdb->query( $wpdb->prepare( $sql ) );
+		// $wpdb->query( $wpdb->prepare( $sql ) );
 
 	}
 

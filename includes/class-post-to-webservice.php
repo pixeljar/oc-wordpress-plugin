@@ -23,7 +23,7 @@ class Post_To_Webservice {
 		 * There are many different actions you might
 		 * hook into to trigger a post to your microservice
 		 */
-		add_action( 'init', [ __CLASS__, 'post_to_slack' ], 10 );
+		// add_action( 'init', [ __CLASS__, 'post_to_slack' ], 10 );
 
 	}
 

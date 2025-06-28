@@ -81,6 +81,7 @@ define( 'OCWP_URL', plugin_dir_url( __FILE__ ) );
 define( 'OCWP_PATH', plugin_dir_path( __FILE__ ) );
 define( 'OCWP_LANG', OCWP_PATH . 'lang/' );
 define( 'OCWP_INC', OCWP_PATH . 'includes/' );
+define( 'OCWP_CONTROLS', OCWP_PATH . 'custom-controls/' );
 
 // Internationalization.
 require_once OCWP_INC . 'class-internationalization.php';
@@ -109,6 +110,9 @@ require_once OCWP_INC . 'class-users.php';
 
 // Widgets.
 require_once OCWP_INC . 'class-members-widget.php';
+
+// Customizer.
+require_once OCWP_INC . 'class-customizer.php';
 
 // Register an activation/deactivation hook to set up post type permalinks.
 register_activation_hook( __FILE__, '\ocwp\Custom_Post_Type::activation' );

@@ -23,7 +23,7 @@ class Pull_From_Webservice {
 		 * There are many different actions you might
 		 * hook into to trigger a pull from a microservice
 		 */
-		add_action( 'init', [ __CLASS__, 'pull_from_rss' ], 10 );
+		// add_action( 'init', [ __CLASS__, 'pull_from_rss' ], 10 );
 
 	}
 
